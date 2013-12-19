@@ -1,6 +1,7 @@
 package org.nathantehbeast.api.framework.methods;
 
 import org.excobot.game.api.wrappers.Locatable;
+import org.excobot.game.api.wrappers.scene.Tile;
 import org.nathantehbeast.api.framework.context.Context;
 import org.nathantehbeast.api.framework.context.Provider;
 
@@ -20,6 +21,10 @@ public class Movement extends Provider {
 
     public boolean walkTo(Locatable l) {
         return org.excobot.game.api.methods.scene.Movement.walkGameScreen(l);
+    }
+
+    public Tile getDestination() {
+        return org.excobot.game.api.methods.scene.Movement.getDestination();
     }
 
 

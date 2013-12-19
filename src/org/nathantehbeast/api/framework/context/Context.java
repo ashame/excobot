@@ -19,6 +19,7 @@ public class Context {
     public NPCs npcs;
     public GroundItems groundItems;
     public GameObjects gameObjects;
+    public DepositBox depositBox;
 
     public Context(Script script) {
         this.script = script;
@@ -31,6 +32,7 @@ public class Context {
         this.npcs = new NPCs(this);
         this.groundItems = new GroundItems(this);
         this.gameObjects = new GameObjects(this);
+        this.depositBox = new DepositBox(this);
     }
 
     public Script getScript() {

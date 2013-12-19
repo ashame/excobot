@@ -51,15 +51,27 @@ public class Calculations extends Provider {
         final Comparator<Entity> comparator = new Comparator<Entity>() {
             @Override
             public int compare(Entity o1, Entity o2) {
-                return getDistance(o1) - getDistance(o2);
+                return (int) (getDistance(o1) - getDistance(o2));
             }
         };
         Collections.sort(list, comparator);
         return list.size() > 0 ? list.get(0) : null;
     }
 
-    public int getDistance(final Entity entity) {
-        return (int) entity.getLocation().distance(ctx.players.local());
+    public double getDistance(final Entity entity) {
+        return entity.getLocation().distance(ctx.players.local());
+    }
+
+    public double distance(final Entity o1, final Entity o2) {
+        return getDistance(o1) - getDistance(o2);
+    }
+
+    public double getDistance(final Locatable l) {
+        return l.getLocation().distance(ctx.players.local());
+    }
+
+    public double distance(final Locatable l1, final Locatable l2) {
+        return getDistance(l1) - getDistance(l2);
     }
 
     public String getFormattedTime() {
