@@ -4,7 +4,6 @@ import org.excobot.bot.event.listeners.PaintListener;
 import org.excobot.bot.script.GameScript;
 import org.excobot.game.api.util.Time;
 import org.nathantehbeast.api.framework.context.Context;
-import org.nathantehbeast.api.tools.Logger;
 import org.nathantehbeast.api.tools.Utilities;
 
 import java.awt.*;
@@ -72,7 +71,7 @@ public abstract class Script extends GameScript implements PaintListener {
         return delay;
     }
 
-    protected abstract void loop();
+    protected void loop() {}
 
     @Override
     public void onFinish() {
@@ -82,14 +81,14 @@ public abstract class Script extends GameScript implements PaintListener {
         exit();
     }
 
-    protected abstract void exit();
+    protected void exit() {}
 
     @Override
     public void repaint(Graphics g) {
         onRepaint((Graphics2D) g);
     }
 
-    protected abstract void onRepaint(Graphics2D g);
+    protected void onRepaint(Graphics2D g) {}
 
     public void log(Object x) {
         System.out.println("[" + Utilities.getFormattedTime() + "] " + x);

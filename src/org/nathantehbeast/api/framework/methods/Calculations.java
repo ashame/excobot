@@ -1,9 +1,11 @@
 package org.nathantehbeast.api.framework.methods;
 
+import org.excobot.game.api.wrappers.Entity;
 import org.nathantehbeast.api.framework.context.Context;
 import org.nathantehbeast.api.framework.context.Provider;
 
 import java.text.DecimalFormat;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -33,5 +35,21 @@ public class Calculations extends Provider {
 
     public int perHour(final int gained, final long start) {
         return (int) ((gained) * 3600000D / (System.currentTimeMillis() - start));
+    }
+
+    public Entity getNearest(final Entity[] entities) {
+        final List<Entity> list = Arrays.asList(entities);
+        final Comparator<Entity> comparator = new Comparator<Entity>() {
+            @Override
+            public int compare(Entity o1, Entity o2) {
+                return getDistance(o1) - getDistance(o2);
+            }
+        };
+        Collections.sort(list, comparator);
+        return list.size() > 0 ? list.get(0) : null;
+    }
+
+    public int getDistance(final Entity entity) {
+        return (int) entity.getLocation().distance(ctx.players.local());
     }
 }

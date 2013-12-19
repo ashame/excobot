@@ -13,6 +13,10 @@ public class Provider {
     public Provider(Context ctx) {
         this.ctx = ctx;
     }
+
+    public Context getContext() {
+        return ctx;
+    }
 }
 
 

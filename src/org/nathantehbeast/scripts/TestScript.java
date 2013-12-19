@@ -7,7 +7,6 @@ import org.nathantehbeast.api.framework.Script;
 import org.nathantehbeast.api.framework.methods.LoopTask;
 import org.nathantehbeast.api.framework.methods.Task;
 
-import java.awt.*;
 import java.util.Arrays;
 
 /**
@@ -15,7 +14,7 @@ import java.util.Arrays;
  */
 
 @Manifest(
-        authors = "Nathan",
+        authors = {"Nathan", "Not Kenneh"},
         name = "Test Script",
         description = "A test script.",
         version = 1.0,
@@ -55,18 +54,4 @@ public class TestScript extends Script {
         return true;
     }
 
-    @Override
-    public void loop() {
-
-    }
-
-    @Override
-    public void exit() {
-
-    }
-
-    @Override
-    public void onRepaint(Graphics2D g) {
-
-    }
 }
