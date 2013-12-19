@@ -1,4 +1,4 @@
-package org.nathantehbeast.api.tools;
+package org.nathantehbeast.api.util;
 
 import org.excobot.bot.script.Manifest;
 

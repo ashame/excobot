@@ -1,4 +1,4 @@
-package org.nathantehbeast.api.framework.methods;
+package org.nathantehbeast.api.methods;
 
 import org.excobot.game.api.wrappers.Entity;
 import org.excobot.game.api.wrappers.Locatable;

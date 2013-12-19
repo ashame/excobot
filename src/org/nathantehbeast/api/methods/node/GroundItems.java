@@ -1,4 +1,4 @@
-package org.nathantehbeast.api.framework.methods;
+package org.nathantehbeast.api.methods.node;
 
 import org.excobot.game.api.util.impl.Filter;
 import org.excobot.game.api.wrappers.media.animable.GroundItem;
@@ -7,8 +7,6 @@ import org.nathantehbeast.api.framework.context.Context;
 import org.nathantehbeast.api.framework.context.Provider;
 
 import java.util.LinkedHashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -62,8 +60,23 @@ public class GroundItems extends Provider {
         });
     }
 
+    public GroundItem getNearest(final String... names) {
+        return getNearest(new Filter<GroundItem>() {
+            @Override
+            public boolean accept(GroundItem groundItem) {
+                final String name = groundItem.getName();
+                for (final String s : names) {
+                    if (s != null && s.equalsIgnoreCase(name)) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+    }
+
     public GroundItem getNearest(final int... ids) {
-        return (GroundItem) ctx.calculations.getNearest(getLoaded(new Filter<GroundItem>() {
+        return getNearest(new Filter<GroundItem>() {
             @Override
             public boolean accept(GroundItem groundItem) {
                 final int ID = groundItem.getId();
@@ -74,7 +87,7 @@ public class GroundItems extends Provider {
                 }
                 return false;
             }
-        }));
+        });
     }
 
     public GroundItem getNearest(final Filter<GroundItem> filter) {

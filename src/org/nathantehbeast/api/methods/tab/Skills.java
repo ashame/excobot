@@ -1,4 +1,4 @@
-package org.nathantehbeast.api.framework.methods;
+package org.nathantehbeast.api.methods.tab;
 
 import org.nathantehbeast.api.framework.context.Context;
 import org.nathantehbeast.api.framework.context.Provider;

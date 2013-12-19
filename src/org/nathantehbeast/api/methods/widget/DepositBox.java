@@ -1,4 +1,4 @@
-package org.nathantehbeast.api.framework.methods;
+package org.nathantehbeast.api.methods.widget;
 
 import org.excobot.game.api.methods.cache.media.Widgets;
 import org.excobot.game.api.methods.input.Keyboard;
@@ -59,12 +59,7 @@ public class DepositBox extends Provider {
     }
 
     public GameObject getNearest() {
-        return ctx.gameObjects.getNearest(new Filter<GameObject>() {
-            @Override
-            public boolean accept(GameObject gameObject) {
-                return gameObject.getName().equalsIgnoreCase("Bank deposit box");
-            }
-        });
+        return ctx.gameObjects.getNearest("Bank deposit box");
     }
 
     public boolean deposit(final int id, final Bank.Amount amount) {
@@ -85,7 +80,7 @@ public class DepositBox extends Provider {
             if (!item.getComponent().interact(action)) {
                 return false;
             }
-        } else if (item.getComponent().interact("Deposit-X")) {
+        } else if (item.getComponent().interact("Deposit-X")) { //TODO: Get component ID of input
             Time.sleep(200, 800);
             Keyboard.sendKeys(String.valueOf(amount), true);
         }

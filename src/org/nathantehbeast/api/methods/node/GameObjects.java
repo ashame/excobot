@@ -1,4 +1,4 @@
-package org.nathantehbeast.api.framework.methods;
+package org.nathantehbeast.api.methods.node;
 
 import org.excobot.game.api.util.impl.Filter;
 import org.excobot.game.api.wrappers.media.animable.object.GameObject;
@@ -46,8 +46,23 @@ public class GameObjects extends Provider {
         return objects.toArray(new GameObject[objects.size()]);
     }
 
+    public GameObject getNearest(final String... names) {
+        return getNearest(new Filter<GameObject>() {
+            @Override
+            public boolean accept(GameObject gameObject) {
+                final String name = gameObject.getName();
+                for (final String s : names) {
+                    if (name != null && s.equalsIgnoreCase(name)) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+    }
+
     public GameObject getNearest(final int... ids) {
-        return (GameObject) ctx.calculations.getNearest(getLoaded(new Filter<GameObject>() {
+        return getNearest(new Filter<GameObject>() {
             @Override
             public boolean accept(GameObject gameObject) {
                 final int id = gameObject.getId();
@@ -58,7 +73,7 @@ public class GameObjects extends Provider {
                 }
                 return false;
             }
-        }));
+        });
     }
 
     public GameObject getNearest(final Filter<GameObject> filter) {

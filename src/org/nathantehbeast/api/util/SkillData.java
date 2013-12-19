@@ -1,4 +1,4 @@
-package org.nathantehbeast.api.tools;
+package org.nathantehbeast.api.util;
 
 import org.excobot.game.api.methods.tab.Skills;
 import org.excobot.game.api.util.Timer;

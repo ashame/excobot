@@ -4,8 +4,8 @@ import org.excobot.bot.script.Category;
 import org.excobot.bot.script.Manifest;
 import org.excobot.game.api.methods.cache.Game;
 import org.nathantehbeast.api.framework.Script;
-import org.nathantehbeast.api.framework.methods.LoopTask;
-import org.nathantehbeast.api.framework.methods.Task;
+import org.nathantehbeast.api.methods.LoopTask;
+import org.nathantehbeast.api.methods.Task;
 
 import java.util.Arrays;
 

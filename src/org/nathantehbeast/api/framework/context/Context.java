@@ -1,7 +1,11 @@
 package org.nathantehbeast.api.framework.context;
 
 import org.nathantehbeast.api.framework.Script;
-import org.nathantehbeast.api.framework.methods.*;
+import org.nathantehbeast.api.methods.*;
+import org.nathantehbeast.api.methods.interactive.*;
+import org.nathantehbeast.api.methods.node.*;
+import org.nathantehbeast.api.methods.tab.*;
+import org.nathantehbeast.api.methods.widget.*;
 
 /**
  * Created by Nathan on 12/17/13.

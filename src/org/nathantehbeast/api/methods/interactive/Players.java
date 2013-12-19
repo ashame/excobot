@@ -1,4 +1,4 @@
-package org.nathantehbeast.api.framework.methods;
+package org.nathantehbeast.api.methods.interactive;
 
 import org.excobot.game.api.wrappers.media.animable.actor.Player;
 import org.nathantehbeast.api.framework.context.Context;

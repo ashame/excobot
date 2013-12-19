@@ -1,4 +1,4 @@
-package org.nathantehbeast.api.framework.wrappers;
+package org.nathantehbeast.api.wrappers;
 
 import org.excobot.game.api.methods.media.animable.actor.Players;
 import org.excobot.game.api.wrappers.Locatable;

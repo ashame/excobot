@@ -1,4 +1,4 @@
-package org.nathantehbeast.api.framework.methods;
+package org.nathantehbeast.api.methods;
 
 import org.excobot.game.api.wrappers.Locatable;
 import org.excobot.game.api.wrappers.scene.Tile;

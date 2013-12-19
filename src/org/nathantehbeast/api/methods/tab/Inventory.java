@@ -1,4 +1,4 @@
-package org.nathantehbeast.api.framework.methods;
+package org.nathantehbeast.api.methods.tab;
 
 import org.excobot.game.api.util.impl.Filter;
 import org.excobot.game.api.wrappers.media.Item;
