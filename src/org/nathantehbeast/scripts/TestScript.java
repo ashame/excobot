@@ -2,8 +2,7 @@ package org.nathantehbeast.scripts;
 
 import org.excobot.bot.script.Category;
 import org.excobot.bot.script.Manifest;
-import org.excobot.game.api.methods.media.animable.actor.Players;
-import org.excobot.game.api.wrappers.media.Item;
+import org.excobot.game.api.methods.cache.Game;
 import org.nathantehbeast.api.framework.Script;
 import org.nathantehbeast.api.framework.methods.LoopTask;
 import org.nathantehbeast.api.framework.methods.Task;
@@ -27,30 +26,30 @@ public class TestScript extends Script {
 
     @Override
     public boolean setup() {
-        log("Script Started!");
+        log("Script started!");
         delay = 600;
-        ctx.getExecutor().submit(new LoopTask(ctx) {
+        ctx.getScript().submit(new LoopTask(ctx) {
             @Override
             public int loop() {
-                /*
-                log("Skill Levels: " + Arrays.toString(ctx.skills.getLevels()));
-                log("Skill Experiences: " + Arrays.toString(ctx.skills.getExperiences()));
-                log("Total Level: " + ctx.skills.getTotalLevel());
-                log("Total Experience: " + ctx.skills.getTotalExperience());
-                String[] s = new String[ctx.inventory.getItems().length];
-                for (int i = 0; i < ctx.inventory.getItems().length; i++) {
-                    s[i] = ctx.inventory.getItems()[i].getName();
+                if (Game.getGameState() == Game.States.LOGGED_IN) {
+                    log("Skill Levels: " + Arrays.toString(ctx.skills.getLevels()));
+                    log("Skill Experiences: " + Arrays.toString(ctx.skills.getExperiences()));
+                    log("Total Level: " + ctx.skills.getTotalLevel());
+                    log("Total Experience: " + ctx.skills.getTotalExperience());
+                    String[] s = new String[ctx.inventory.getItems().length];
+                    for (int i = 0; i < ctx.inventory.getItems().length; i++) {
+                        s[i] = ctx.inventory.getItems()[i].getName();
+                    }
+                    log("Items: " + Arrays.toString(s));
                 }
-                log("Items: " + Arrays.toString(s));
-                */
-                log("Testing LoopTask");
+                log("LoopTask sleeping for 10000ms");
                 return 10000;
             }
         });
-        ctx.getExecutor().submit(new Task(ctx) {
+        ctx.getScript().submit(new Task(ctx) {
             @Override
             public void run() {
-                log("Testing Task");
+                log("Task completed.");
             }
         });
         return true;

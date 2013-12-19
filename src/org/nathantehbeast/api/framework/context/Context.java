@@ -1,9 +1,10 @@
 package org.nathantehbeast.api.framework.context;
 
-import org.nathantehbeast.api.framework.methods.*;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import org.nathantehbeast.api.framework.Script;
+import org.nathantehbeast.api.framework.methods.Calculations;
+import org.nathantehbeast.api.framework.methods.Inventory;
+import org.nathantehbeast.api.framework.methods.Skills;
+import org.nathantehbeast.api.framework.methods.Walking;
 
 /**
  * Created by Nathan on 12/17/13.
@@ -11,17 +12,15 @@ import java.util.concurrent.Executors;
 
 public class Context {
 
-    private final ExecutorService executor;
-    private boolean running;
+    public Script script;
 
     public Calculations calculations;
     public Inventory inventory;
     public Walking walking;
     public Skills skills;
 
-    public Context() {
-        this.running = true;
-        this.executor = Executors.newCachedThreadPool();
+    public Context(Script script) {
+        this.script = script;
 
         this.calculations = new Calculations(this);
         this.inventory = new Inventory(this);
@@ -29,16 +28,7 @@ public class Context {
         this.skills = new Skills(this);
     }
 
-    public void shutdownExecutor() {
-        this.running = false;
-        executor.shutdown();
-    }
-
-    public ExecutorService getExecutor() {
-        return this.executor;
-    }
-
-    public boolean isRunning() {
-        return this.running;
+    public Script getScript() {
+        return this.script;
     }
 }

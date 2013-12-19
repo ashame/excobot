@@ -1,10 +1,7 @@
 package org.nathantehbeast.api.framework.methods;
 
-import org.excobot.game.client.Client;
 import org.nathantehbeast.api.framework.context.Context;
 import org.nathantehbeast.api.framework.context.Provider;
-
-import java.util.ArrayList;
 
 /**
  * Created by Nathan on 12/18/13.

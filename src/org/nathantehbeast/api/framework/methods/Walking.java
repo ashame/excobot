@@ -1,6 +1,5 @@
 package org.nathantehbeast.api.framework.methods;
 
-import org.excobot.game.api.methods.media.animable.actor.Players;
 import org.excobot.game.api.methods.scene.Movement;
 import org.excobot.game.api.wrappers.Locatable;
 import org.nathantehbeast.api.framework.context.Context;

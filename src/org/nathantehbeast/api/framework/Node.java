@@ -13,5 +13,6 @@ public abstract class Node extends Provider {
     }
 
     public abstract boolean activate();
+
     public abstract void execute();
 }

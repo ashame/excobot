@@ -4,7 +4,7 @@ import org.excobot.bot.event.listeners.PaintListener;
 import org.excobot.bot.script.GameScript;
 import org.excobot.game.api.util.Time;
 import org.nathantehbeast.api.framework.context.Context;
-import org.nathantehbeast.api.framework.methods.LoopTask;
+import org.nathantehbeast.api.tools.Logger;
 import org.nathantehbeast.api.tools.Utilities;
 
 import java.awt.*;
@@ -19,17 +19,15 @@ public abstract class Script extends GameScript implements PaintListener {
 
     private final List<Node> container = Collections.synchronizedList(new ArrayList<Node>());
     public Node currentNode;
-    public int delay = 600;
+    protected int delay = 600;
     public final long startTime;
     public Context ctx;
+    private boolean running;
 
     public Script() {
-        this.ctx = new Context();
+        this.ctx = new Context(this);
         this.startTime = System.currentTimeMillis();
-    }
-
-    public int getContainerSize() {
-        return container.size();
+        this.running = true;
     }
 
     public Context getContext() {
@@ -49,7 +47,6 @@ public abstract class Script extends GameScript implements PaintListener {
 
     @Override
     public boolean start() {
-        log(ctx);
         return setup();
     }
 
@@ -75,28 +72,40 @@ public abstract class Script extends GameScript implements PaintListener {
         return delay;
     }
 
-    public abstract void loop();
+    protected abstract void loop();
 
     @Override
     public void onFinish() {
-        log("Stopping Script.");
-        log("Total runtime: "+ Time.format(System.currentTimeMillis() - startTime));
-        ctx.shutdownExecutor();
+        log("Stopping script.");
+        log("Total runtime: " + Time.format(System.currentTimeMillis() - startTime));
+        this.running = false;
         exit();
     }
 
-    public abstract void exit();
+    protected abstract void exit();
 
     @Override
     public void repaint(Graphics g) {
         onRepaint((Graphics2D) g);
     }
 
-    public abstract void onRepaint(Graphics2D g);
+    protected abstract void onRepaint(Graphics2D g);
 
     public void log(Object x) {
         System.out.println("[" + Utilities.getFormattedTime() + "] " + x);
     }
 
+    public void submit(final Runnable task) {
+        final Thread t = new Thread(getThreadGroup(), task);
+        t.start();
+    }
+
+    public boolean isRunning() {
+        return this.running;
+    }
+
+    public void setRunning(boolean b) {
+        this.running = b;
+    }
 
 }

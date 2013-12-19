@@ -1,7 +1,5 @@
 package org.nathantehbeast.api.framework.context;
 
-import org.excobot.game.api.util.Random;
-
 import java.util.logging.Logger;
 
 /**

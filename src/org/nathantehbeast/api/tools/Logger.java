@@ -174,7 +174,7 @@ public class Logger {
             if (manifest != null)
                 log("Loaded script: " + manifest.name() + " v" + manifest.version() + " by " + manifest.authors()[0]);
         } catch (Exception e) {
-            log("There was an error initializing the logger: "+e.getMessage());
+            log("There was an error initializing the logger: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -189,7 +189,7 @@ public class Logger {
             textArea.append("[" + DATE_FORMAT.format(Calendar.getInstance().getTime()) + "] " + s + System.getProperty("line.separator"));
             textArea.scrollRectToVisible(new Rectangle(0, textArea.getHeight() - 2, 1, 1));
         }
-        System.out.println("[Logger]"+" [" + DATE_FORMAT.format(Calendar.getInstance().getTime()) + "] " + s);
+        System.out.println("[Logger]" + " [" + DATE_FORMAT.format(Calendar.getInstance().getTime()) + "] " + s);
     }
 
     /**
