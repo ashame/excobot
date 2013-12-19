@@ -8,18 +8,18 @@ import org.nathantehbeast.api.framework.context.Provider;
 /**
  * Created by Nathan on 12/17/13.
  */
-public class Walking extends Provider {
+public class Movement extends Provider {
 
-    public Walking(Context ctx) {
+    public Movement(Context ctx) {
         super(ctx);
     }
 
     public void setRun(boolean on) {
-        Movement.setRun(on);
+        org.excobot.game.api.methods.scene.Movement.setRun(on);
     }
 
     public boolean walkTo(Locatable l) {
-        return Movement.walkGameScreen(l);
+        return org.excobot.game.api.methods.scene.Movement.walkGameScreen(l);
     }
 
 
