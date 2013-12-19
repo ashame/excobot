@@ -73,10 +73,6 @@ public class Inventory extends Provider {
     }
 
     public Item[] getItems(final Filter<Item> filter) {
-        return getItems(false, filter);
-    }
-
-    public Item[] getItems(final boolean useCache, final Filter<Item> filter) {
         final List<Item> items = new LinkedList<>();
         for (final Item item : getItems()) {
             if (filter.accept(item)) {

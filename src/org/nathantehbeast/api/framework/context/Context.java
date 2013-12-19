@@ -16,6 +16,9 @@ public class Context {
     public Movement movement;
     public Skills skills;
     public Players players;
+    public NPCs npcs;
+    public GroundItems groundItems;
+    public GameObjects gameObjects;
 
     public Context(Script script) {
         this.script = script;
@@ -25,6 +28,9 @@ public class Context {
         this.movement = new Movement(this);
         this.skills = new Skills(this);
         this.players = new Players(this);
+        this.npcs = new NPCs(this);
+        this.groundItems = new GroundItems(this);
+        this.gameObjects = new GameObjects(this);
     }
 
     public Script getScript() {

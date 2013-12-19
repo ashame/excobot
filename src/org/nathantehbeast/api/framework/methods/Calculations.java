@@ -1,11 +1,18 @@
 package org.nathantehbeast.api.framework.methods;
 
 import org.excobot.game.api.wrappers.Entity;
+import org.excobot.game.api.wrappers.Locatable;
 import org.nathantehbeast.api.framework.context.Context;
 import org.nathantehbeast.api.framework.context.Provider;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.io.IOException;
+import java.net.URL;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,6 +26,8 @@ public class Calculations extends Provider {
     public Calculations(Context ctx) {
         super(ctx);
     }
+
+    public final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("HH:mm:ss");
 
     public String formatNumber(final int num) {
         final DecimalFormat df = new DecimalFormat("0.0");
@@ -51,5 +60,34 @@ public class Calculations extends Provider {
 
     public int getDistance(final Entity entity) {
         return (int) entity.getLocation().distance(ctx.players.local());
+    }
+
+    public String getFormattedTime() {
+        return DATE_FORMAT.format(Calendar.getInstance().getTime());
+    }
+
+    public Image getImage(final String url) {
+        try {
+            return ImageIO.read(new URL(url));
+        } catch (IOException e) {
+            getContext().getScript().log("Error loading image: " + e.getMessage());
+           e.printStackTrace();
+           return null;
+        }
+    }
+
+    public boolean loadFont(int type, String url) {
+        try{
+            URL fontUrl = new URL(url);
+            Font font = Font.createFont(type, fontUrl.openStream());
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(font);
+            getContext().getScript().log("Successfully registered font: " + font.getFontName());
+            return true;
+        } catch (Exception e) {
+            getContext().getScript().log("Error loading font: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
     }
 }
