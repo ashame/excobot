@@ -6,13 +6,12 @@ import org.nathantehbeast.api.framework.context.Provider;
 /**
  * Created by Nathan on 12/17/13.
  */
-public abstract class Node extends Provider {
+public abstract class Job extends Provider {
 
-    public Node(Context arg0) {
+    public Job(Context arg0) {
         super(arg0);
     }
 
     public abstract boolean activate();
-
     public abstract void execute();
 }

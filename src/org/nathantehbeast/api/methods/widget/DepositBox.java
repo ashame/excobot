@@ -1,7 +1,11 @@
 package org.nathantehbeast.api.methods.widget;
 
-import org.excobot.game.api.methods.cache.media.Widgets;
+import org.excobot.Application;
+import org.excobot.bot.script.Condition;
+import org.excobot.game.api.methods.cache.media.*;
+import org.excobot.game.api.methods.cache.media.Menu;
 import org.excobot.game.api.methods.input.Keyboard;
+import org.excobot.game.api.methods.input.Mouse;
 import org.excobot.game.api.methods.media.Bank;
 import org.excobot.game.api.util.Time;
 import org.excobot.game.api.util.Timer;
@@ -12,12 +16,13 @@ import org.excobot.game.api.wrappers.media.animable.object.GameObject;
 import org.nathantehbeast.api.framework.context.Context;
 import org.nathantehbeast.api.framework.context.Provider;
 
-import java.util.ArrayList;
+import java.awt.*;
+import java.util.*;
 
 /**
  * Created by Nathan on 12/19/13.
  */
-public class DepositBox extends Provider {
+public class DepositBox extends Provider { //TODO: Rewrite deposit portions to comply with OS components.
 
     public DepositBox(Context ctx) {
         super(ctx);
@@ -62,53 +67,12 @@ public class DepositBox extends Provider {
         return ctx.gameObjects.getNearest("Bank deposit box");
     }
 
-    public boolean deposit(final int id, final Bank.Amount amount) {
-        return deposit(id, amount.getIndex());
-    }
-
-    public boolean deposit(final int id, final int amount) {
-        final Item item = getItem(id);
-        if (!isOpen() || item == null || amount < 0) {
-            return false;
-        }
-        String action = "Deposit-" + amount;
-        if (getItemCount(true, id) <= amount || amount == 0) {
-            action = "Deposit-All";
-        }
-        final int invCount = getItemCount(true);
-        if (slotContainsAction(item.getComponent(), action)) {
-            if (!item.getComponent().interact(action)) {
-                return false;
-            }
-        } else if (item.getComponent().interact("Deposit-X")) { //TODO: Get component ID of input
-            Time.sleep(200, 800);
-            Keyboard.sendKeys(String.valueOf(amount), true);
-        }
-        final Timer t = new Timer(2000);
-        while (t.isRunning() && getItemCount(true) == invCount) {
-            Time.sleep(5);
-        }
-        return getItemCount(true) != invCount;
-    }
-
-    public boolean depositInventory() {
-        if (!isOpen()) {
-            return false;
-        }
-        if (getItems().length == 0) {
-            return true;
-        }
-        final int invCount = getItems().length;
-        final ArrayList<Integer> ids = new ArrayList<>();
-        for (Item item : getItems()) {
-            if (item != null && !ids.contains(item.getId())) {
-                ids.add(item.getId());
-            }
-        }
-        for (int id : ids) {
-            deposit(id, Bank.Amount.ALL);
-        }
-        return invCount != getItems().length;
+    public Point getItemPoint(final int index) {
+        final int column = (index % 8);
+        final int row = (index / 8);
+        final int p1 = 147 + (column * 40);
+        final int p2 = 90 + (row * 42);
+        return new Point(p1, p2);
     }
 
     public Item[] getItems() {
@@ -116,6 +80,21 @@ public class DepositBox extends Provider {
             @Override
             public boolean accept(Item item) {
                 return true;
+            }
+        });
+    }
+
+    public Item[] getItems(final int... ids) {
+        return getItems(new Filter<Item>() {
+            @Override
+            public boolean accept(Item item) {
+                final int id = item.getId();
+                for (int i : ids) {
+                    if (id == i) {
+                        return true;
+                    }
+                }
+                return false;
             }
         });
     }
@@ -133,6 +112,13 @@ public class DepositBox extends Provider {
             }
         }
         return arr.toArray(new Item[arr.size()]);
+    }
+
+    public int[] getItemIds() {
+        if (!isOpen()) {
+            return new int[0];
+        }
+        return Widgets.getComponent(WIDGET_DEPOSIT_BOX, WIDGET_SLOTS_CONTAINER).getItems();
     }
 
     public Item getItem(final int id) {

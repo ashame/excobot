@@ -1,5 +1,6 @@
 package org.nathantehbeast.api.framework;
 
+import org.excobot.Application;
 import org.excobot.bot.event.listeners.PaintListener;
 import org.excobot.bot.script.GameScript;
 import org.excobot.game.api.util.Time;
@@ -15,8 +16,8 @@ import java.util.List;
  */
 public abstract class Script extends GameScript implements PaintListener {
 
-    private final List<Node> container = Collections.synchronizedList(new ArrayList<Node>());
-    public Node currentNode;
+    private final List<Job> container = Collections.synchronizedList(new ArrayList<Job>());
+    public Job currentJob;
     protected int delay = 600;
     public final long startTime;
     public Context ctx;
@@ -32,12 +33,12 @@ public abstract class Script extends GameScript implements PaintListener {
         return ctx;
     }
 
-    public synchronized final void provide(final Node... nodes) {
-        if (nodes != null) {
-            for (Node node : nodes) {
-                if (!container.contains(node)) {
-                    container.add(node);
-                    log("Providing: " + node);
+    public synchronized final void provide(final Job... jobs) {
+        if (jobs != null) {
+            for (Job job : jobs) {
+                if (!container.contains(job)) {
+                    container.add(job);
+                    log("Providing: " + job);
                 }
             }
         }
@@ -55,10 +56,10 @@ public abstract class Script extends GameScript implements PaintListener {
         try {
             if (container != null) {
                 synchronized (container) {
-                    for (Node node : container) {
-                        if (node.activate()) {
-                            node.execute();
-                            currentNode = node;
+                    for (Job job : container) {
+                        if (job.activate()) {
+                            job.execute();
+                            currentJob = job;
                         }
                     }
                 }
@@ -74,8 +75,6 @@ public abstract class Script extends GameScript implements PaintListener {
 
     @Override
     public void onFinish() {
-        log("Stopping script.");
-        log("Total runtime: " + Time.format(System.currentTimeMillis() - startTime));
         this.running = false;
         exit();
     }
@@ -91,6 +90,7 @@ public abstract class Script extends GameScript implements PaintListener {
 
     public void log(Object x) {
         System.out.println("[" + ctx.calculations.getFormattedTime() + "] " + x);
+        Application.log("[" + ctx.calculations.getFormattedTime() + "] " + x);
     }
 
     public void submit(final Runnable task) {

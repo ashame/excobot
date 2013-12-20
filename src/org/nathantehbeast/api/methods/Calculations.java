@@ -74,6 +74,10 @@ public class Calculations extends Provider {
         return getDistance(l1) - getDistance(l2);
     }
 
+    public double distance(final Point p1, final Point p2) {
+        return Point.distance(p1.getX(), p1.getY(), p2.getX(), p2.getY());
+    }
+
     public String getFormattedTime() {
         return DATE_FORMAT.format(Calendar.getInstance().getTime());
     }

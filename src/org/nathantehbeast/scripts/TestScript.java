@@ -1,12 +1,19 @@
 package org.nathantehbeast.scripts;
 
+import org.excobot.Application;
 import org.excobot.bot.script.Category;
+import org.excobot.bot.script.Condition;
 import org.excobot.bot.script.Manifest;
 import org.excobot.game.api.methods.cache.Game;
+import org.excobot.game.api.methods.media.Bank;
+import org.excobot.game.api.util.Time;
+import org.nathantehbeast.api.framework.Job;
 import org.nathantehbeast.api.framework.Script;
+import org.nathantehbeast.api.framework.context.Context;
 import org.nathantehbeast.api.methods.LoopTask;
 import org.nathantehbeast.api.methods.Task;
 
+import java.awt.*;
 import java.util.Arrays;
 
 /**
@@ -27,31 +34,12 @@ public class TestScript extends Script {
     public boolean setup() {
         log("Script started!");
         delay = 600;
-        ctx.getScript().submit(new LoopTask(ctx) {
-            @Override
-            public int loop() {
-                if (Game.getGameState() == Game.States.LOGGED_IN) {
-                    log("Skill Levels: " + Arrays.toString(ctx.skills.getLevels()));
-                    log("Skill Experiences: " + Arrays.toString(ctx.skills.getExperiences()));
-                    log("Total Level: " + ctx.skills.getTotalLevel());
-                    log("Total Experience: " + ctx.skills.getTotalExperience());
-                    String[] s = new String[ctx.inventory.getItems().length];
-                    for (int i = 0; i < ctx.inventory.getItems().length; i++) {
-                        s[i] = ctx.inventory.getItems()[i].getName();
-                    }
-                    log("Items: " + Arrays.toString(s));
-                }
-                log("LoopTask sleeping for 10000ms");
-                return 10000;
-            }
-        });
-        ctx.getScript().submit(new Task(ctx) {
-            @Override
-            public void run() {
-                log("Task completed.");
-            }
-        });
         return true;
     }
 
+    @Override
+    public void onRepaint(Graphics2D g) {
+        g.drawString("Current Job: " + currentJob, 5, 15);
+        g.drawString("Runtime: " + Time.format(System.currentTimeMillis() - startTime), 5, 30);
+    }
 }
