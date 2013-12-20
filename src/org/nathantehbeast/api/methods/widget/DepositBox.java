@@ -1,12 +1,6 @@
 package org.nathantehbeast.api.methods.widget;
 
-import org.excobot.Application;
-import org.excobot.bot.script.Condition;
-import org.excobot.game.api.methods.cache.media.*;
-import org.excobot.game.api.methods.cache.media.Menu;
-import org.excobot.game.api.methods.input.Keyboard;
-import org.excobot.game.api.methods.input.Mouse;
-import org.excobot.game.api.methods.media.Bank;
+import org.excobot.game.api.methods.cache.media.Widgets;
 import org.excobot.game.api.util.Time;
 import org.excobot.game.api.util.Timer;
 import org.excobot.game.api.util.impl.Filter;
@@ -17,7 +11,7 @@ import org.nathantehbeast.api.framework.context.Context;
 import org.nathantehbeast.api.framework.context.Provider;
 
 import java.awt.*;
-import java.util.*;
+import java.util.ArrayList;
 
 /**
  * Created by Nathan on 12/19/13.

@@ -40,6 +40,20 @@ public class NPCs extends Provider {
         });
     }
 
+    public NPC[] getLoaded(final String... names) {
+        return getLoaded(new Filter<NPC>() {
+            @Override
+            public boolean accept(NPC npc) {
+                for (final String s : names) {
+                    if (s != null && s.equalsIgnoreCase(npc.getName())) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+    }
+
     public NPC[] getLoaded(final Filter<NPC> filter) {
         final Set<NPC> npcs = new HashSet<>();
         for (NPC npc : org.excobot.game.api.methods.media.animable.actor.NPCs.getLoaded()) {

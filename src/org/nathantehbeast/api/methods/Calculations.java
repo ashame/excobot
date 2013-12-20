@@ -46,11 +46,11 @@ public class Calculations extends Provider {
         return (int) ((gained) * 3600000D / (System.currentTimeMillis() - start));
     }
 
-    public Entity getNearest(final Entity[] entities) {
-        final List<Entity> list = Arrays.asList(entities);
-        final Comparator<Entity> comparator = new Comparator<Entity>() {
+    public Locatable getNearest(final Locatable[] locatables) {
+        final List<Locatable> list = Arrays.asList(locatables);
+        final Comparator<Locatable> comparator = new Comparator<Locatable>() {
             @Override
-            public int compare(Entity o1, Entity o2) {
+            public int compare(Locatable o1, Locatable o2) {
                 return (int) (getDistance(o1) - getDistance(o2));
             }
         };
@@ -58,12 +58,8 @@ public class Calculations extends Provider {
         return list.size() > 0 ? list.get(0) : null;
     }
 
-    public double getDistance(final Entity entity) {
-        return entity.getLocation().distance(ctx.players.local());
-    }
-
-    public double distance(final Entity o1, final Entity o2) {
-        return getDistance(o1) - getDistance(o2);
+    public double distanceTo(final Locatable l) {
+        return getDistance(l);
     }
 
     public double getDistance(final Locatable l) {
