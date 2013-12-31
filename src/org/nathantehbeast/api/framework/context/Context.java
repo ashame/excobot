@@ -1,14 +1,19 @@
 package org.nathantehbeast.api.framework.context;
 
 import org.nathantehbeast.api.framework.Script;
-import org.nathantehbeast.api.methods.*;
+import org.nathantehbeast.api.methods.Calculations;
+import org.nathantehbeast.api.methods.Movement;
 import org.nathantehbeast.api.methods.interactive.*;
-import org.nathantehbeast.api.methods.node.*;
-import org.nathantehbeast.api.methods.tab.*;
-import org.nathantehbeast.api.methods.widget.*;
+import org.nathantehbeast.api.methods.node.GameObjects;
+import org.nathantehbeast.api.methods.node.GroundItems;
+import org.nathantehbeast.api.methods.tab.Skills;
+import org.nathantehbeast.api.methods.widget.DepositBox;
+import org.nathantehbeast.api.methods.tab.Inventory;
 
 /**
  * Created by Nathan on 12/17/13.
+ * http://www.powerbot.org/community/user/523484-nathan-l/
+ * http://www.excobot.org/forum/user/906-nathan/
  */
 
 public class Context {

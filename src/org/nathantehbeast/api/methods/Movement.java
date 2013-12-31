@@ -7,6 +7,8 @@ import org.nathantehbeast.api.framework.context.Provider;
 
 /**
  * Created by Nathan on 12/17/13.
+ * http://www.powerbot.org/community/user/523484-nathan-l/
+ * http://www.excobot.org/forum/user/906-nathan/
  */
 
 public class Movement extends Provider {

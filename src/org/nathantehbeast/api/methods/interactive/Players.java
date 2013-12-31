@@ -1,12 +1,15 @@
 package org.nathantehbeast.api.methods.interactive;
 
-import org.excobot.game.api.wrappers.media.animable.actor.Player;
 import org.nathantehbeast.api.framework.context.Context;
 import org.nathantehbeast.api.framework.context.Provider;
+import org.nathantehbeast.api.wrappers.interactive.Player;
 
 /**
  * Created by Nathan on 12/18/13.
+ * http://www.powerbot.org/community/user/523484-nathan-l/
+ * http://www.excobot.org/forum/user/906-nathan/
  */
+
 public class Players extends Provider {
 
     public Players(Context ctx) {
@@ -14,6 +17,6 @@ public class Players extends Provider {
     }
 
     public Player local() {
-        return org.excobot.game.api.methods.media.animable.actor.Players.getLocal();
+        return new Player(org.excobot.game.api.methods.media.animable.actor.Players.getLocal(), ctx);
     }
 }

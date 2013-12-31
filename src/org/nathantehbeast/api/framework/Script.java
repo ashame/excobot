@@ -14,6 +14,8 @@ import java.util.List;
 
 /**
  * Created by Nathan on 12/17/13.
+ * http://www.powerbot.org/community/user/523484-nathan-l/
+ * http://www.excobot.org/forum/user/906-nathan/
  */
 
 public abstract class Script extends GameScript implements PaintListener {
@@ -62,7 +64,7 @@ public abstract class Script extends GameScript implements PaintListener {
     public abstract boolean setup();
 
     @Override
-    public int execute() {
+    public int execute() throws InterruptedException {
         try {
             if (container != null) {
                 synchronized (container) {

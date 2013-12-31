@@ -5,7 +5,10 @@ import org.nathantehbeast.api.framework.context.Provider;
 
 /**
  * Created by Nathan on 12/18/13.
+ * http://www.powerbot.org/community/user/523484-nathan-l/
+ * http://www.excobot.org/forum/user/906-nathan/
  */
+
 public class Skills extends Provider {
 
     public Skills(Context ctx) {
@@ -23,10 +26,34 @@ public class Skills extends Provider {
             31777943, 35085654, 38737661, 42769801, 47221641, 52136869, 57563718, 63555443, 70170840, 77474828,
             85539082, 94442737, 104273167};
 
+    public final int ATTACK = 0;
+    public final int DEFENSE = 1;
+    public final int STRENGTH = 2;
+    public final int CONSTITUTION = 3;
+    public final int RANGE = 4;
+    public final int PRAYER = 5;
+    public final int MAGIC = 6;
+    public final int COOKING = 7;
+    public final int WOODCUTTING = 8;
+    public final int FLETCHING = 9;
+    public final int FISHING = 10;
+    public final int FIREMAKING = 11;
+    public final int CRAFTING = 12;
+    public final int SMITHING = 13;
+    public final int MINING = 14;
+    public final int HERBLORE = 15;
+    public final int AGILITY = 16;
+    public final int THIEVING = 17;
+    public final int SLAYER = 18;
+    public final int FARMING = 19;
+    public final int RUNECRAFTING = 20;
+    public final int HUNTER = 21;
+    public final int CONSTRUCTION = 22;
+
     public int[] getLevels() {
         final int[] levels = new int[23];
         for (int i = 0; i < 23; i++) {
-            levels[i] = org.excobot.game.api.methods.tab.Skills.values()[i].getRealLevel();
+            levels[i] = org.excobot.game.api.methods.tab.Skills.values()[i].getBoostedLevel();
         }
         return levels;
     }

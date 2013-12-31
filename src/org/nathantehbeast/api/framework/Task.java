@@ -9,12 +9,10 @@ import org.nathantehbeast.api.framework.context.Provider;
  * http://www.excobot.org/forum/user/906-nathan/
  */
 
-public abstract class Job extends Provider {
+public abstract class Task extends Provider implements Runnable {
 
-    public Job(Context arg0) {
-        super(arg0);
+    public Task(final Context ctx) {
+        super(ctx);
     }
 
-    public abstract boolean activate();
-    public abstract void execute();
 }

@@ -1,6 +1,6 @@
 package org.nathantehbeast.api.methods;
 
-import org.excobot.game.api.wrappers.Entity;
+import org.excobot.game.api.methods.tab.Skills;
 import org.excobot.game.api.wrappers.Locatable;
 import org.nathantehbeast.api.framework.context.Context;
 import org.nathantehbeast.api.framework.context.Provider;
@@ -21,6 +21,7 @@ import java.util.List;
  * Time: 12:42 AM
  * To change this template use File | Settings | File Templates.
  */
+
 public class Calculations extends Provider {
 
     public Calculations(Context ctx) {
@@ -101,5 +102,11 @@ public class Calculations extends Provider {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public int getHealthPercent() {
+        final int currentHealth = Skills.HEALTH.getBoostedLevel();
+        final int maxHealth = Skills.HEALTH.getRealLevel();
+        return currentHealth / maxHealth * 100;
     }
 }

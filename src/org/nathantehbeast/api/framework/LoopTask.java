@@ -1,10 +1,13 @@
-package org.nathantehbeast.api.methods;
+package org.nathantehbeast.api.framework;
 
 import org.nathantehbeast.api.framework.context.Context;
 
 /**
  * Created by Nathan on 12/17/13.
+ * http://www.powerbot.org/community/user/523484-nathan-l/
+ * http://www.excobot.org/forum/user/906-nathan/
  */
+
 public abstract class LoopTask extends Task {
 
     public LoopTask(final Context ctx) {

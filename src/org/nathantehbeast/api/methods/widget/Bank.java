@@ -21,6 +21,8 @@ import java.util.Arrays;
 
 /**
  * Created by Nathan on 12/19/13.
+ * http://www.powerbot.org/community/user/523484-nathan-l/
+ * http://www.excobot.org/forum/user/906-nathan/
  */
 
 public class Bank extends Provider { //TODO: deposit/withdrawal methods that comply with 07

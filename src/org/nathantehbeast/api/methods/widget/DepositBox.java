@@ -15,7 +15,10 @@ import java.util.ArrayList;
 
 /**
  * Created by Nathan on 12/19/13.
+ * http://www.powerbot.org/community/user/523484-nathan-l/
+ * http://www.excobot.org/forum/user/906-nathan/
  */
+
 public class DepositBox extends Provider { //TODO: Rewrite deposit portions to comply with OS components.
 
     public DepositBox(Context ctx) {
